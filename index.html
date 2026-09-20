@@ -1,6 +1,6 @@
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <title>دوري المبرمجين</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -23,7 +24,7 @@
 
         .leaderboard {
             width: 100%;
-            max-width: 700px;
+            max-width: 800px;
             margin: auto;
             background: white;
             border-radius: 16px;
@@ -157,6 +158,26 @@
             margin-right: 3px;
         }
 
+        /* Details Button */
+
+        .details-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .details-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
         /* Top 3 */
 
         .competitor.first {
@@ -191,7 +212,7 @@
             }
 
             .competitor {
-                gap: 10px;
+                gap: 8px;
                 padding: 10px;
             }
 
@@ -202,11 +223,11 @@
             }
 
             .name {
-                font-size: 15px;
+                font-size: 14px;
             }
 
             .points {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             .rank {
@@ -216,7 +237,13 @@
             .tab {
                 font-size: 14px;
             }
+
+            .details-btn {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
         }
+
     </style>
 </head>
 
@@ -237,14 +264,18 @@
                 id="monthlyTab"
                 class="tab active"
                 onclick="changeLeaderboard('monthly')">
+
                 📅 هذا الشهر
+
             </button>
 
             <button
                 id="overallTab"
                 class="tab"
                 onclick="changeLeaderboard('overall')">
+
                 🏆 الإجمالي
+
             </button>
 
         </div>
@@ -258,99 +289,29 @@
     </div>
 
 
+    <!-- Student Data -->
+
+    <script src="students.js"></script>
+
+
     <script>
-
-        // ==========================================
-        // EDIT YOUR COMPETITORS HERE
-        // ==========================================
-
-        const competitors = [
-
-            {
-                name: "محمد حمادة",
-                monthlyPoints: 24,
-                overallPoints: 24,
-                avatar: ""
-            },
-
-            {
-                name: "محمد ماهر الرخ ",
-                monthlyPoints: 21,
-                overallPoints: 21,
-                avatar: ""
-            },
-
-            {
-                name: "يوسف أحمد",
-                monthlyPoints: 28,
-                overallPoints: 28,
-                avatar: ""
-            },
-
-            {
-                name: "عمرو عادل",
-                monthlyPoints:15,
-                overallPoints: 15,
-                avatar: ""
-            },
-
-            {
-                name: "أحمد أنور",
-                monthlyPoints: 27,
-                overallPoints: 27,
-                avatar: ""
-            },
-
-            {
-                name: "عبد الرحمن محمد",
-                monthlyPoints: 28,
-                overallPoints: 28,
-                avatar: ""
-            },
-
-            {
-                name:  "محمد السيد علي البدري",
-                monthlyPoints: 28,
-                overallPoints: 28,
-                avatar: ""
-            },
-
-            {
-                name: "محمد محمود الرخ",
-                monthlyPoints: 0,
-                overallPoints: 0,
-                avatar: ""
-            },
-
-            {
-                name: "حمدي شريف",
-                monthlyPoints: 0,
-                overallPoints: 0,
-                avatar: ""
-            },
-
-            {
-                name: "not yet",
-                monthlyPoints: 0,
-                overallPoints: 0,
-                avatar: ""
-            },
-
-            {
-                name: "not yet",
-                monthlyPoints: 0,
-                overallPoints: 0,
-                avatar: ""
-            }
-
-        ];
-
 
         // ==========================================
         // CURRENT LEADERBOARD
         // ==========================================
 
         let currentLeaderboard = "monthly";
+
+
+        // ==========================================
+        // OPEN STUDENT DETAILS
+        // ==========================================
+
+        function openStudentDetails(id) {
+
+            window.location.href = `student-details.html?id=${id}`;
+
+        }
 
 
         // ==========================================
@@ -372,6 +333,7 @@
                 .classList.toggle("active", type === "overall");
 
             renderLeaderboard();
+
         }
 
 
@@ -398,6 +360,7 @@
                         : b.overallPoints;
 
                 return pointsB - pointsA;
+
             });
 
 
@@ -410,10 +373,11 @@
 
                 let rankDisplay = rank;
 
-                const row = document.createElement("div");
-
 
                 // Top 3 medals
+
+                const row = document.createElement("div");
+
 
                 if (rank === 1) {
 
@@ -474,6 +438,14 @@
                         <span>نقطة</span>
                     </div>
 
+                    <button
+                        class="details-btn"
+                        onclick="openStudentDetails(${competitor.id})">
+
+                        التفاصيل
+
+                    </button>
+
                 `;
 
 
@@ -493,5 +465,5 @@
     </script>
 
 </body>
+
 </html>
-```
