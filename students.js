@@ -9,7 +9,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\mohamedhamada1-1.jpg"
             }
         ]
     },
@@ -23,7 +23,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\mohamedmaher1-1.jpg"
             }
         ]
     },
@@ -37,7 +37,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\yousefMohamed1-1.jpg"
             }
         ]
     },
@@ -51,7 +51,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\amradel1-1.jpg"
             }
         ]
     },
@@ -65,7 +65,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\ahmedanwar1-1.jpg"
             }
         ]
     },
@@ -79,7 +79,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\abdelrahman1-1.jpg"
             }
         ]
     },
@@ -93,7 +93,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: ""
+                img: "images\First2Lissons\mohamedelsaied1-1.jpg"
             }
         ]
     },
