@@ -3,7 +3,310 @@
 
 <head>
 
+    <meta charset="UTF-8"><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تفاصيل الطالب</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 18px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .student-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .student-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .student-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .scores {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .score-box {
+            min-width: 200px;
+            padding: 20px;
+            background: #f1f3f5;
+            border-radius: 12px;
+        }
+
+        .score-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .score-value {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .exams-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .exam {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .exam-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .exam-image {
+            width: 100%;
+            text-align: center;
+        }
+
+        .exam-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .no-image {
+            padding: 30px;
+            background: #f5f5f5;
+            color: #777;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .not-found {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .student-name {
+                font-size: 23px;
+            }
+
+            .score-box {
+                width: 100%;
+            }
+
+            .exam-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a href="index.html" class="back-btn">
+            ← العودة للطلاب
+        </a>
+
+        <div id="studentDetails"></div>
+
+    </div>
+
+    <script src="students.js"></script>
+
+    <script>
+
+        // Get student ID from URL
+        const params = new URLSearchParams(window.location.search);
+        const studentId = Number(params.get("id"));
+
+        // Find student
+        const student = competitors.find(x => x.id === studentId);
+
+        const container = document.getElementById("studentDetails");
+
+        // Student not found
+        if (!student) {
+
+            container.innerHTML = `
+                <div class="not-found">
+                    <h2>الطالب غير موجود</h2>
+                    <p>تأكد من صحة رابط الطالب.</p>
+                </div>
+            `;
+
+        } else {
+
+            // Student avatar
+            const avatarHtml = student.avatar
+                ? `<img class="student-avatar" src="${student.avatar}" alt="${student.name}">`
+                : "";
+
+            // Exams
+            let examsHtml = "";
+
+            if (!student.exams || student.exams.length === 0) {
+
+                examsHtml = `
+                    <div class="no-image">
+                        لا توجد امتحانات لهذا الطالب.
+                    </div>
+                `;
+
+            } else {
+
+                examsHtml = student.exams.map(exam => {
+
+                    let imageHtml = "";
+
+                    if (exam.img) {
+
+                        // Directly use the image path
+                        imageHtml = `
+                            <div class="exam-image">
+                                <img
+                                    src="${exam.img}"
+                                    alt="${exam.title}"
+                                >
+                            </div>
+                        `;
+
+                    } else {
+
+                        imageHtml = `
+                            <div class="no-image">
+                                لا توجد صورة لهذا الامتحان.
+                            </div>
+                        `;
+                    }
+
+                    return `
+                        <div class="exam">
+
+                            <div class="exam-title">
+                                ${exam.title}
+                            </div>
+
+                            ${imageHtml}
+
+                        </div>
+                    `;
+
+                }).join("");
+            }
+
+            // Render student page
+            container.innerHTML = `
+
+                <div class="student-card">
+
+                    ${avatarHtml}
+
+                    <div class="student-name">
+                        ${student.name}
+                    </div>
+
+                    <div class="scores">
+
+                        <div class="score-box">
+
+                            <div class="score-title">
+                                درجة الشهر
+                            </div>
+
+                            <div class="score-value">
+                                ${student.monthlyPoints}
+                            </div>
+
+                        </div>
+
+                        <div class="score-box">
+
+                            <div class="score-title">
+                                الدرجة الكلية
+                            </div>
+
+                            <div class="score-value">
+                                ${student.overallPoints}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="exams-title">
+                    الامتحانات
+                </div>
+
+                ${examsHtml}
+            `;
+        }
+
+    </script>
+
+</body>
+
+</html>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
