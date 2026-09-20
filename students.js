@@ -37,7 +37,7 @@ const competitors = [
         exams: [
             {
                 title: "امتحان اول درسين في الوحدة الاولي",
-                img: "images\First2Lissons\yousefMohamed1-1.jpg"
+                img: "images/First2Lissons/yousefMohamed1-1.jpg"
             }
         ]
     },
