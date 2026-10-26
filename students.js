@@ -31,8 +31,8 @@ const competitors = [
     {
         id: 3,
         name: "يوسف أحمد",
-        monthlyPoints: 28,
-        overallPoints: 28,
+        monthlyPoints: 30,
+        overallPoints: 30,
         avatar: "",
         exams: [
             {
@@ -59,8 +59,8 @@ const competitors = [
     {
         id: 5,
         name: "أحمد أنور",
-        monthlyPoints: 27,
-        overallPoints: 27,
+        monthlyPoints: 30,
+        overallPoints: 30,
         avatar: "",
         exams: [
             {
@@ -87,8 +87,8 @@ const competitors = [
     {
         id: 7,
         name: "محمد السيد علي البدري",
-        monthlyPoints: 28,
-        overallPoints: 28,
+        monthlyPoints: 30,
+        overallPoints: 30,
         avatar: "",
         exams: [
             {
